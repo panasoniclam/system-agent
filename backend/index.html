@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OCR + Ollama Demo</title>
+</head>
+<body>
+  <h2>Upload ảnh CMND hoặc văn bản</h2>
+  <input type="file" id="file" />
+  <button onclick="upload()">Gửi</button>
+  <pre id="result"></pre>
+
+  <script>
+    async function upload() {
+      const file = document.getElementById('file').files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+       console.log(formData,"formData")
+      const res = await fetch("http://localhost:8000/analyze", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+      document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
