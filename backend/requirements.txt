@@ -6,3 +6,5 @@ requests
 python-multipart
 openpyxl
 pandas
+pillow
+pymupdf
